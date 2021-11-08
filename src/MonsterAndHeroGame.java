@@ -37,7 +37,7 @@ public class MonsterAndHeroGame extends RPGGame{
 
     private void handleControlInput() {
         System.out.println(instruction());
-        System.out.print("please enter: ");
+//        System.out.print("please enter: ");
         String input = ScanUtil.scanString();
         while (true) {
             if(input.equalsIgnoreCase("q")) {
@@ -55,7 +55,7 @@ public class MonsterAndHeroGame extends RPGGame{
             } else {
                 System.out.println("invalid input!");
                 System.out.println(instruction());
-                System.out.println("please enter: ");
+//                System.out.println("please enter: ");
                 input = ScanUtil.scanString();
             }
         }

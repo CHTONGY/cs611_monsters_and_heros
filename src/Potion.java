@@ -22,6 +22,7 @@ public class Potion extends Item{
         hero.setDexterity(hero.getDexterity() + increaseStats[3]);
         hero.getStats().addDefense(increaseStats[4]);
         hero.setAgility(hero.getAgility() + increaseStats[5]);
+        ((Hero) role).getInventory().removeItem(this);
     }
 
 }

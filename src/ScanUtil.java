@@ -39,6 +39,7 @@ public class ScanUtil {
 
 
     public static String scanString() {
+        System.out.print("please enter: ");
         while (true) {
             if (sc.hasNext()) {
                 String s = sc.next();

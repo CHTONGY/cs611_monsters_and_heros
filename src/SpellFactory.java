@@ -37,6 +37,42 @@ public class SpellFactory extends ItemFactory{
         return null;
     }
 
+    @Override
+    public String getAllItemsInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\tName/cost/required level/damage/mana cost\n");
+        for(int i = 0; i < fireSpellInfos.size(); i++) {
+            sb.append("f").append(i).append("\t");
+            List<String> info = fireSpellInfos.get(i);
+            for(String s : info) {
+                sb.append(s).append("\t");
+            }
+            sb.append("\n");
+        }
+        for(int i = 0; i < iceSpellInfos.size(); i++) {
+            sb.append("i").append(i).append("\t");
+            List<String> info = iceSpellInfos.get(i);
+            for(String s : info) {
+                sb.append(s).append("\t");
+            }
+            sb.append("\n");
+        }
+        for(int i = 0; i < lightningSpellInfos.size(); i++) {
+            sb.append("l").append(i).append("\t");
+            List<String> info = lightningSpellInfos.get(i);
+            for(String s : info) {
+                sb.append(s).append("\t");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public int getItemsSize() {
+        return fireSpellInfos.size() + lightningSpellInfos.size() + iceSpellInfos.size();
+    }
+
     public Item createFireSpell(int index) {
         List<String> info = fireSpellInfos.get(index);
         String name = info.get(0);
@@ -72,5 +108,17 @@ public class SpellFactory extends ItemFactory{
             spellFactory = new SpellFactory();
         }
         return spellFactory;
+    }
+
+    public int getFireSpellSize() {
+        return fireSpellInfos.size();
+    }
+
+    public int getIceSpellSize() {
+        return iceSpellInfos.size();
+    }
+
+    public int getLightningSpellSize() {
+        return lightningSpellInfos.size();
     }
 }

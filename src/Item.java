@@ -56,7 +56,13 @@ public abstract class Item implements Sellable{
     }
 
     @Override
-    public void sellTo(Buyable buyable) {
-        buyable.getInventory().addItem(this);
+    public boolean sellTo(Buyable buyable) {
+        if(buyable.getLevel() >= this.minLevelReq &&
+                buyable.getMoney() >= this.price) {
+            buyable.getInventory().addItem(this);
+            buyable.setMoney(buyable.getMoney() - this.price);
+            return true;
+        }
+        return false;
     }
 }

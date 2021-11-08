@@ -7,5 +7,5 @@ public interface Sellable {
     int getPrice();
     void setPrice(int price);
     int getLevelReq();
-    void sellTo(Buyable buyable);
+    boolean sellTo(Buyable buyable);
 }

@@ -30,6 +30,16 @@ public class WeaponFactory extends ItemFactory{
         return create(randNum);
     }
 
+    @Override
+    public String getAllItemsInfo() {
+        return getAllWeaponInfos();
+    }
+
+    @Override
+    public int getItemsSize() {
+        return getAllWeaponInfosSize();
+    }
+
     public Item create(int index) {
         List<String> info = weaponInfos.get(index);
         String name = info.get(0);
@@ -47,7 +57,7 @@ public class WeaponFactory extends ItemFactory{
         return weaponFactory;
     }
 
-    public String getAllWeaponInfos() {
+    private String getAllWeaponInfos() {
         StringBuilder sb = new StringBuilder();
         sb.append("\tName/cost/level/damage/required hands\n");
         for(int i = 0; i < weaponInfos.size(); i++) {
@@ -61,7 +71,7 @@ public class WeaponFactory extends ItemFactory{
         return sb.toString();
     }
 
-    public int getAllWeaponInfosSize() {
+    private int getAllWeaponInfosSize() {
         return weaponInfos.size();
     }
 }

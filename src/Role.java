@@ -3,7 +3,7 @@
  * @description: role class in game
  * @author: Yan Tong
  **/
-public abstract class Role {
+public abstract class Role{
     private String name;
     private Stats stats;
     private int[] position;

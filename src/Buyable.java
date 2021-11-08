@@ -5,6 +5,8 @@
  **/
 public interface Buyable {
     Inventory getInventory();
-
     void buy(Sellable sellable);
+    int getLevel();
+    int getMoney();
+    void setMoney(int money);
 }

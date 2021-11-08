@@ -22,7 +22,9 @@ public class ReadFileUtil {
             StringBuffer sb = new StringBuffer();    //constructs a string buffer with no characters
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
-                res.add(line);
+                if(line.length() != 0) {
+                    res.add(line);
+                }
             }
             fr.close();    //closes the stream and release the resources
         } catch (IOException e) {

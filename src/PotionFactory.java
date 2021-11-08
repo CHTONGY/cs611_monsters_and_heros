@@ -40,6 +40,16 @@ public class PotionFactory extends ItemFactory{
         return create(randNum);
     }
 
+    @Override
+    public String getAllItemsInfo() {
+        return getAllPotionInfos();
+    }
+
+    @Override
+    public int getItemsSize() {
+        return getAllPostionsSize();
+    }
+
     public Item create(int index) {
         List<String> info = potionInfos.get(index);
         String name = info.get(0);
@@ -67,7 +77,7 @@ public class PotionFactory extends ItemFactory{
         return potionFactory;
     }
 
-    public String getAllPotionInfos() {
+    private String getAllPotionInfos() {
         StringBuilder sb = new StringBuilder();
         sb.append("\tName/cost/required level/attribute increase/attribute affected\n");
         for(int i = 0; i < potionInfos.size(); i++) {
@@ -81,7 +91,7 @@ public class PotionFactory extends ItemFactory{
         return sb.toString();
     }
 
-    public int getAllPostionsSize() {
+    private int getAllPostionsSize() {
         return potionInfos.size();
     }
 }
