@@ -11,17 +11,20 @@ import java.util.List;
  * @author: Yan Tong
  **/
 public class ReadFileUtil {
+    public static String configFileDir = System.getProperty("user.dir") + "/config_files/";
+
     public static List<String> readFile(String path) {
         List<String> res = new ArrayList<>();
         try {
             File file = new File(path);    //creates a new file instance
-            BufferedReader br = new BufferedReader(new FileReader(file));  //creates a buffering character input stream
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);  //creates a buffering character input stream
             StringBuffer sb = new StringBuffer();    //constructs a string buffer with no characters
-            String line;
+            String line = br.readLine();
             while ((line = br.readLine()) != null) {
                 res.add(line);
             }
-            br.close();    //closes the stream and release the resources
+            fr.close();    //closes the stream and release the resources
         } catch (IOException e) {
             System.out.println("read file error");
             e.printStackTrace();

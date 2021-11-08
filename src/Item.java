@@ -49,4 +49,14 @@ public abstract class Item implements Sellable{
                 ", minLevelReq=" + minLevelReq +
                 '}';
     }
+
+    @Override
+    public int getLevelReq() {
+        return minLevelReq;
+    }
+
+    @Override
+    public void sellTo(Buyable buyable) {
+        buyable.getInventory().addItem(this);
+    }
 }

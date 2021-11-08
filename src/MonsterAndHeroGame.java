@@ -9,10 +9,9 @@ public class MonsterAndHeroGame extends RPGGame{
 
     public MonsterAndHeroGame(int teamMemberNum) {
         super();
-        this.grid = new Grid(8,8);
-        // TODO: add team
         this.team = new Team(teamMemberNum);
-        team.setPosition(grid.initHeroesPosition());
+        this.grid = new Grid(8,8, team);
+        this.grid.initHeroesPosition();
     }
 
     @Override
@@ -55,6 +54,9 @@ public class MonsterAndHeroGame extends RPGGame{
                 break;
             } else {
                 System.out.println("invalid input!");
+                System.out.println(instruction());
+                System.out.println("please enter: ");
+                input = ScanUtil.scanString();
             }
         }
     }
@@ -62,7 +64,7 @@ public class MonsterAndHeroGame extends RPGGame{
     private void showTeamInventory() {
         for(TeamIterator it = team.teamIterator(); it.hasNext();) {
             Hero hero = (Hero) it.next();
-            System.out.print(hero.getName());
+            System.out.print(hero.getName() + " ");
             System.out.println(hero.getInventory());
         }
     }

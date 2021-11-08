@@ -7,14 +7,16 @@ import java.util.Arrays;
  **/
 public class Grid {
     private Cell[][] cells;
-    private int[] heroesPosition;
+//    private int[] heroesPosition;
     private int row;
     private int col;
+    private Team team;
 
-    public Grid(int row, int col) {
+    public Grid(int row, int col, Team team) {
         this.cells = new Cell[row][col];
         this.row = row;
         this.col = col;
+        this.team = team;
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < col; j++) {
                 cells[i][j] = generateCell(i, j);
@@ -35,11 +37,11 @@ public class Grid {
     }
 
     public int[] getHeroesPosition() {
-        return heroesPosition;
+        return team.getPosition();
     }
 
     public void setHeroesPosition(int[] heroesPosition) {
-        this.heroesPosition = heroesPosition;
+        team.setPosition(heroesPosition);
     }
 
     public int[] initHeroesPosition() {
@@ -47,14 +49,15 @@ public class Grid {
             int initRow = (int)(Math.random() * this.row);
             int initCol = (int)(Math.random() * this.col);
             if(cells[initRow][initCol] instanceof CommonCell) {
-                heroesPosition = new int[]{initRow, initCol};
+                int[] heroesPosition = new int[]{initRow, initCol};
+                team.setPosition(heroesPosition);
                 return heroesPosition;
             }
         }
     }
 
     public void setHeroesPosition(int row, int col) {
-        this.heroesPosition = new int[]{row, col};
+        this.team.setPosition(new int[]{row, col});
     }
 
     private Cell generateCell(int row, int col) {
@@ -90,7 +93,7 @@ public class Grid {
     private void printRow(int row) {
         for(int j = 0; j < col; j++) {
             System.out.print("|");
-            if(row == heroesPosition[0] && j == heroesPosition[1]) {
+            if(row == team.getRow() && j == team.getCol()) {
                 System.out.print("T ");
             } else {
                 System.out.print(cells[row][j] + " ");

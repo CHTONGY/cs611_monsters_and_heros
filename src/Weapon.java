@@ -22,11 +22,6 @@ public class Weapon extends Item{
         ((Hero)role).setWeapon(this);
     }
 
-    @Override
-    public void sellTo(Buyable buyable) {
-
-    }
-
     public int getDamage() {
         return damage;
     }

@@ -23,6 +23,10 @@ public abstract class Role {
         this.position = position;
     }
 
+    public void addLevel(int addition) {
+        this.stats.addLevel(addition);
+    }
+
     public String getName() {
         return name;
     }

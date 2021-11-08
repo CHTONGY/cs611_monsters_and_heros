@@ -30,7 +30,18 @@ public abstract class Hero extends Role implements Attackable, Buyable{
         this.inventory = inventory;
     }
 
-    public abstract void levelUp();
+
+    public boolean levelUp() {
+        int requireExp = 10 * getLevel();
+        if(getExperience() >= requireExp) {
+            this.addLevel(1);
+            this.setExperience(getExperience() - requireExp);
+            this.mana = (int)(this.mana * 1.1);
+            this.setHp(Math.max(this.getHp(), this.getLevel() * 100));
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public Inventory getInventory() {

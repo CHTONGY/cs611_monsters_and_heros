@@ -17,12 +17,7 @@ public class Armor extends Item{
 
     @Override
     public void use(Role role) {
-
-    }
-
-    @Override
-    public void sellTo(Buyable buyable) {
-
+        ((Hero)role).setArmor(this);
     }
 
     public int getDefense() {

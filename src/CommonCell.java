@@ -14,7 +14,7 @@ public class CommonCell extends Cell{
 
     @Override
     public void comeTo(Team team) {
-
+        team.updatePosition(this.getPosition());
     }
 
     @Override

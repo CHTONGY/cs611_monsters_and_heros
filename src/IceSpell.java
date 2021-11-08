@@ -4,6 +4,10 @@
  * @author: Yan Tong
  **/
 public class IceSpell extends Spell{
+    public IceSpell(String name, int price, int minLevelReq, int damage, int manaCost) {
+        super(name, price, minLevelReq, damage, manaCost);
+    }
+
     public IceSpell(String name, int price, int minLevelReq) {
         super(name, price, minLevelReq);
     }
@@ -13,8 +17,4 @@ public class IceSpell extends Spell{
 
     }
 
-    @Override
-    public void sellTo(Buyable buyable) {
-
-    }
 }

@@ -4,6 +4,10 @@
  * @author: Yan Tong
  **/
 public class FireSpell extends Spell{
+    public FireSpell(String name, int price, int minLevelReq, int damage, int manaCost) {
+        super(name, price, minLevelReq, damage, manaCost);
+    }
+
     public FireSpell(String name, int price, int minLevelReq) {
         super(name, price, minLevelReq);
     }
@@ -13,8 +17,4 @@ public class FireSpell extends Spell{
 
     }
 
-    @Override
-    public void sellTo(Buyable buyable) {
-
-    }
 }

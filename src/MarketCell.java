@@ -4,12 +4,14 @@
  * @author: Yan Tong
  **/
 public class MarketCell extends Cell{
+
     public MarketCell(int[] position) {
         super(position);
+
     }
 
     public MarketCell(int row, int col) {
-        super(row, col);
+        this(new int[]{row, col});
     }
 
     @Override
