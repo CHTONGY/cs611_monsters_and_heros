@@ -1,3 +1,7 @@
+import java.awt.desktop.AboutHandler;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @className: CommonPlace
  * @description: common cell on grid, can pass and meet monster
@@ -33,8 +37,14 @@ public class CommonCell extends Cell{
     }
 
     private void rewardTeam(Team team) {
+        Set<Role> visited = new HashSet<>();
         for(TeamIterator aliveIt = team.aliveTeamIterator(); aliveIt.hasNext();) {
-            rewardRole(aliveIt.next());
+            Role role = aliveIt.next();
+            if(visited.contains(role)) {
+                break;
+            }
+            rewardRole(role);
+            visited.add(role);
         }
         for(TeamIterator it = team.teamIterator(); it.hasNext();) {
             recoverRole(it.next());

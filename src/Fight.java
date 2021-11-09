@@ -25,7 +25,9 @@ public class Fight {
             if (role2.getHp() <= 0) {
                 role2 = aliveIt2.next();
             }
-            role2.attack(role1);
+            if(role2 != null) {
+                role2.attack(role1);
+            }
 
         }
         if(role2 == null) {

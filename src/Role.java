@@ -32,9 +32,11 @@ public abstract class Role implements Attackable{
             System.out.printf("%s dodge\n", role.getName());
             return;
         } else {
-            int minusHp = getStats().getDamage() - role.getDefense();
-            System.out.printf("%s cause %d damage\n", this.getName(), minusHp);
+            int minusHp = Math.max(role.getDamage() - role.getDefense(), 0);
             role.setHp(role.getHp() - minusHp);
+            System.out.printf("%s cause %d damage, %s has hp: %d\n",
+                    this.getName(), minusHp,
+                    role.getName(), Math.max(role.getHp(), 0));
         }
     }
 
