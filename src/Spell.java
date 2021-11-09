@@ -3,7 +3,7 @@
  * @description: class of spell
  * @author: Yan Tong
  **/
-public abstract class Spell extends Item{
+public abstract class Spell extends Item {
     private int damage;
     private int manaCost;
 

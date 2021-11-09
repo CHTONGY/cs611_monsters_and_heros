@@ -30,7 +30,6 @@ public abstract class Hero extends Role implements Attackable, Buyable{
         this.inventory = inventory;
     }
 
-
     public boolean levelUp() {
         int requireExp = 10 * getLevel();
         if(getExperience() >= requireExp) {
@@ -43,20 +42,14 @@ public abstract class Hero extends Role implements Attackable, Buyable{
         return false;
     }
 
-    @Override
-    public Inventory getInventory() {
-        return this.inventory;
+    public void addExp(int addition) {
+        this.experience += addition;
+        levelUp();
     }
 
     @Override
-    public void attack(Role role) {
-        int dodgeChance = role.getDodge();
-        if((int)(Math.random() * 5) < dodgeChance) {
-            // dodge
-            return;
-        } else {
-            int hp = role.getHp() - getStats().getDamage() + role.getDefense();
-        }
+    public Inventory getInventory() {
+        return this.inventory;
     }
 
     @Override

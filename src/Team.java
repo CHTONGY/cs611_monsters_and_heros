@@ -11,11 +11,19 @@ import java.util.Set;
 public class Team extends Role implements TeamIterable{
     private List<Role> teamMember;
 
-    public Team(int teamMemberNum) {
+    public Team() {
         teamMember = new ArrayList<>();
+    }
+
+    public Team(int teamMemberNum) {
+        this();
         for(int i = 0; i < teamMemberNum; i++) {
             teamMember.add(HeroFactory.getInstance().create());
         }
+    }
+
+    public void addTeamMember(Role role) {
+        teamMember.add(role);
     }
 
     public void updatePosition(int[] position) {
@@ -65,29 +73,26 @@ public class Team extends Role implements TeamIterable{
 
     private class AliveRoleIterator implements TeamIterator {
         int index;
-        Set<Integer> notAlive;
 
         public AliveRoleIterator() {
             index = 0;
-            notAlive = new HashSet<>();
         }
 
         @Override
         public boolean hasNext() {
-            return notAlive.size() == teamMember.size();
+            Role role = next();
+            index--;
+            return role != null;
         }
 
         @Override
         public Role next() {
-            while (index < teamMember.size()) {
-                while (index < index + teamMember.size()) {
-                    int i = (index++) % teamMember.size();
-                    Role role = teamMember.get(i);
-                    if(role.getHp() <= 0) {
-                        notAlive.add(i);
-                    } else {
-                        return role;
-                    }
+            int upperBound = index + teamMember.size();
+            while (index < upperBound) {
+                int i = (index++) % teamMember.size();
+                Role role = teamMember.get(i);
+                if(role.getHp() > 0) {
+                    return role;
                 }
             }
             return null;
@@ -96,7 +101,49 @@ public class Team extends Role implements TeamIterable{
         @Override
         public void reset() {
             index = 0;
-            notAlive.clear();
         }
+    }
+
+    private class NotAliveRoleIterator implements TeamIterator {
+        int index;
+        int aliveCounter;
+        int notAliveCounter;
+
+        public NotAliveRoleIterator() {
+            index = 0;
+            for(Role role : teamMember) {
+                if(role.getHp() > 0) {
+                    aliveCounter++;
+                }
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return notAliveCounter + aliveCounter < getTeamMemberNum();
+        }
+
+        @Override
+        public Role next() {
+            while (index < teamMember.size()) {
+                Role role = teamMember.get(index++);
+                if(role.getHp() <= 0) {
+                    notAliveCounter++;
+                    return role;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public void reset() {
+            index = 0;
+            aliveCounter = 0;
+            notAliveCounter = 0;
+        }
+    }
+
+    public int getTeamMemberNum() {
+        return teamMember.size();
     }
 }

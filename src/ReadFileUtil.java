@@ -39,7 +39,7 @@ public class ReadFileUtil {
         String[] splits = s.split(regex);
         for(String split : splits) {
             // discard all empty string in splits array
-            if(split.length() != 0) {
+            if(split.trim().length() != 0) {
                 res.add(split);
             }
         }

@@ -3,7 +3,7 @@
  * @description: role class in game
  * @author: Yan Tong
  **/
-public abstract class Role{
+public abstract class Role implements Attackable{
     private String name;
     private Stats stats;
     private int[] position;
@@ -21,6 +21,21 @@ public abstract class Role{
         this.name = name;
         this.stats = new Stats(level, hp, damage, defense, dodge);
         this.position = position;
+    }
+
+    @Override
+    public void attack(Role role) {
+        int dodgeChance = role.getDodge();
+        System.out.printf("%s -> %s\n", this.getName(), role.getName());
+        if((int)(Math.random() * 5) < dodgeChance) {
+            // dodge
+            System.out.printf("%s dodge\n", role.getName());
+            return;
+        } else {
+            int minusHp = getStats().getDamage() - role.getDefense();
+            System.out.printf("%s cause %d damage\n", this.getName(), minusHp);
+            role.setHp(role.getHp() - minusHp);
+        }
     }
 
     public void addLevel(int addition) {
